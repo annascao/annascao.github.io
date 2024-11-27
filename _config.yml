@@ -1,0 +1,14 @@
+# Site settings
+title: Anna's Portfolio
+SEOTitle: Anna Portfolio
+header-img: imgs/home-background.jpg
+email: anna.shuqi@gmail.com
+description: "Anna's Portfolio Page"
+keywords: "Anna, Anna Cao, Anna Portfolio, Anna Cao Portfolio, Github Pages"
+url: "annascao.github.com" # your host, for absolute URL
+baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
+
+# SNS settings
+RSS: false
+github_username: annascao
+linkedin_username:  annashuqicao
