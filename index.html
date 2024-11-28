@@ -6,14 +6,16 @@
   <title>Anna's Portfolio</title>
   <meta name="description" content="Anna's Portfolio Page">
   <meta name="keywords" content="Anna, Anna Cao, Anna Portfolio, Anna Cao Portfolio, Github Pages">
-  <link rel="stylesheet" href="assets/web.css">
+  <link rel="stylesheet" href="css/web.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script src="js/typing.js" defer></script>
 </head>
 <body>
 
   <!-- Navigation Bar -->
   <header>
     <nav>
-        <div class="nav-logo">
+        <div class="nav-name">
             <ul>
                 <li><a href="#hero">Anna Cao</a></li>
             <ul>
@@ -23,7 +25,7 @@
                 <li><a href="#hero">HOME</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#projects">PROJECTS</a></li>
-                <li><a href="docs/Anna_Resume_11_27_2024.pdf">RESUME</a></li>
+                <li><a href="docs/Anna_Resume_11_27_2024.pdf" target="_blank">RESUME</a></li>
             <ul>
         </div>
     </nav>
@@ -34,27 +36,31 @@
     <img src="docs/home-background.jpg" alt="Background Image" class="hero-bg">
     <div class="hero-text">
       <h1>Anna's Portfolio</h1>
-      <p>Home Page</p>
+      <p id="typed-text"></p>
     </div>
   </section>
 
   <!-- Info Section -->
-
   <section class="posts" id="about">
-    <div class="post-preview">
+    <div class="post">
         <a><h2 class="post-title">About Me</a></h2>
-        <p class="post-preview-text">Hello! My name is Anna and </p>
+        <p class="post-text">Hello! My name is Anna, and I am currently studying electrical engineering at UBC.
+        </p>
+        <ul class="post-text">
+            <li>I am passionate about working with embedded systems, leveraging my skills in software development and hardware integration to create cool things</li>
+            <li>In my free time, I also enjoy baking and skiing!</li>
+        <ul class="post-text">
     </div>
   </section>
 
   <section class="posts" id="projects">
-    <div class="post-preview">
+    <div class="post">
         <a><h2 class="post-title">Flight Sensing System</a></h2>
-        <p class="post-preview-text">asdasdasdas</p>
+        <p class="post-text">asdasdasdas</p>
     </div>
-    <div class="post-preview">
+    <div class="post">
         <a><h2 class="post-title">2-DOF Laser Projector</a></h2>
-        <p class="post-preview-text">asdasdasdasd</p>
+        <p class="post-text">asdasdasdasd</p>
     </div>
 
   </section>
@@ -69,11 +75,6 @@
     </a>
     <p>Anna Cao</p>
   </footer>
-
-  <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-  rel="stylesheet"
-  />
 
 </body>
 </html>
