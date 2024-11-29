@@ -163,7 +163,7 @@ nav a:hover {
 
 .post-text li {
   list-style-type: disc;  /* Ensures that bullet points show */
-  margin-left: 40px;  /* Apply margin to list items */
+  margin-left: 20px;  /* Apply margin to list items */
 }
 
 
