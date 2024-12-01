@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (index < text.length) {
         typedTextElement.innerHTML += text.charAt(index);
         index++;
-        setTimeout(type, 50); // speed = 100ms
+        setTimeout(type, 130); // speed = 100ms
       }
     }
 

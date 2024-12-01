@@ -62,6 +62,12 @@ nav a:hover {
   color: #d3d3d3;
 }
 
+.icon-nav {
+  font-size: 20px;
+  align-items: center;
+  padding: 5px;
+}
+
 /*Home Page*/
 .hero {
   position: relative;
@@ -96,13 +102,20 @@ nav a:hover {
 
 .hero-text {
   max-width: 50%; /* Constrain text width */
-  text-align: left;
+  text-align: center;
+  display: inline-block;
   z-index: 2;
 
 }
 
 .hero h1 {
-  font-size: 4rem;
+  font-size: 5rem;
+  font-family: arial black;
+}
+
+.hero h2 {
+  font-size: 1.2rem;
+  font-family: arial black;
 }
 
 .hero p {
@@ -113,36 +126,18 @@ nav a:hover {
   color: white;
   white-space: nowrap; /* Prevents text from wrapping */
   overflow: hidden; /* Hide text until it's typed */
-  border-right: 3px solid #fff; /* Cursor effect */
-  width: 0; /* Initially, no text is shown */
-  animation: typing 3s steps(30) 1s forwards, cursor 0.5s step-end 2s forwards;
   position: relative;
-  text-align: center;
-}
 
-@keyframes typing {
-  from {
-    width: 50px;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes cursor {
-  100% {
-    border-right: transparent;
-  }
 }
 
 .about-box {
-  background-color: rgba(255, 255, 255, 0.201);
+  background-color: rgba(137, 129, 129, 0.331);
   color: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: flex;
-  width: 45%; /* Width for the "About Me" box */
+  width: 50%; /* Width for the "About Me" box */
   z-index: 2;
 }
 
@@ -208,7 +203,7 @@ footer {
   font-size: 40px;
   align-items: center;
   color: #40403f;
-  padding: 10px;
+  padding: 20px;
 }
 
 .icon:hover {
