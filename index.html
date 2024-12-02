@@ -15,19 +15,15 @@
   <!-- Navigation Bar -->
   <header>
     <nav>
-        <div class="nav-name">
+        <div class="nav-left">
             <ul>
                 <li>
-                  <a href="https://github.com/annascao" target="_blank">
-                  <i class="fab fa-github icon-nav"></i>
-                  </a>
-                  <a href="https://linkedin.com/in/annashuqicao" target="_blank">
-                  <i class="fab fa-linkedin icon-nav"></i>
-                  </a>
+                  <a href="https://github.com/annascao" target="_blank"> <i class="fab fa-github icon-nav"></i></a>
+                  <a href="https://linkedin.com/in/annashuqicao" target="_blank"> <i class="fab fa-linkedin icon-nav"></i></a>
                 </li>
             <ul>
         </div>
-        <div class="nav-content">
+        <div class="nav-right">
             <ul>
                 <li><a href="#hero">HOME</a></li>
                 <li><a href="#projects">PROJECTS</a></li>
@@ -37,23 +33,26 @@
     </nav>
   </header>
 
+  <main>
   <!-- Hero Section -->
-
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-text">
-      <h1>Anna Cao</h1>
-      <p id="typed-text"></p>
-    </div>
-    <div class="about-box">
-      <h2>ABOUT ME</h2>
-      <p>
-        Hello! My name is Anna, and I am currently studying electrical engineering at UBC.
-        I am passionate about working with embedded systems, leveraging my skills in software development and hardware integration to create cool things
-        In my free time, I also enjoy baking and skiing!
-      </p>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Anna Cao</h1>
+        <p id="typed-text"></p>
+      </div>
+      <div class="about-box">
+        <h2>ABOUT ME</h2>
+        <p>
+          Hello! My name is Anna, and I am currently studying electrical engineering at UBC.
+          I am passionate about working with embedded systems, leveraging my skills in software development and hardware integration to create cool things.
+          In my free time, I also enjoy baking and skiing!
+        </p>
+      </div>
     </div>
   </section>
+
 
   <section class="posts" id="projects">
     <div class="post">
@@ -67,6 +66,11 @@
 
   </section>
 
+  <script src="js/typing.js" defer></script>
+  <script src="js/bootstrap.min.js"></script>
+  </main>
+
+</body>
   <!-- Footer Section -->
   <footer>
     <a href="https://github.com/annascao" target="_blank">
@@ -77,9 +81,4 @@
     </a>
     <p>Anna Cao</p>
   </footer>
-
-  <script src="js/typing.js" defer></script>
-  <script src="js/bootstrap.min.js"></script>
-
-</body>
 </html>

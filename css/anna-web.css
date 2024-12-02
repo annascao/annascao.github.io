@@ -27,14 +27,16 @@ nav {
   align-items: center;
 }
 
-.nav-name {
+.nav-left {
   display: flex;
   align-self: center;
+  flex-direction: row;
 }
 
-.nav-content {
+.nav-right {
   display: flex;
   align-self: center;
+  flex-direction: row;
 }
 
 nav ul {
@@ -44,18 +46,13 @@ nav ul {
   padding: 10px;
 }
 
-/* Style the individual list items */
-nav li {
-  margin-right: 20px;
-}
-
 /* Style the anchor link */
 nav a {
-  font-size: 14px;
+  font-size:  1rem;
   font-family: arial black;
   text-decoration: none;
   color: white;
-  padding: 10px;
+  padding: 20px;
 }
 
 nav a:hover {
@@ -63,15 +60,19 @@ nav a:hover {
 }
 
 .icon-nav {
-  font-size: 20px;
-  align-items: center;
-  padding: 5px;
+  font-size: 1.2rem;
+}
+
+/* MAIN */
+
+main {
+  width: 100%;
+  max-width: 12000px;
 }
 
 /*Home Page*/
 .hero {
   position: relative;
-  width: 100%;
   height: 100vh;
   background-color: black;
   color: white;
@@ -79,15 +80,14 @@ nav a:hover {
   align-items: center;
   justify-content: space-between; /* Space btwn title and about*/
   padding: 150px;
-
 }
 
 .hero-bg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  width: 100%; /* idk why yet but i need the width and height defined here.... */
+  height: 100%;
   object-fit: cover;
   opacity: 0.5;
   z-index: 1;
@@ -100,12 +100,17 @@ nav a:hover {
   background-size: cover;
 }
 
-.hero-text {
-  max-width: 50%; /* Constrain text width */
-  text-align: center;
-  display: inline-block;
-  z-index: 2;
 
+.hero-content {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  justify-content: space-between; /* Space between .hero-text and .about-box */
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 50%;
+  text-align: center;
 }
 
 .hero h1 {
@@ -137,8 +142,7 @@ nav a:hover {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: flex;
-  width: 50%; /* Width for the "About Me" box */
-  z-index: 2;
+  max-width: 50%;
 }
 
 /* Posts */
@@ -209,4 +213,36 @@ footer {
 .icon:hover {
   color: #59a6a2;
   transition: color 0.3s ease;
+}
+
+/* MEDIA QUERRIES */
+
+@media (max-width: 1050px) {
+
+  .hero{
+    padding: 80px 80px;
+  }
+  .hero-content {
+    flex-direction: column; /* Stack .hero-text and .about-box vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Align text in the center */
+  }
+
+  .hero-text,
+  .about-box {
+    max-width: 900px; /* Optional: Set a max width for better readability */
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero h2 {
+    font-size: 0.9rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
 }
