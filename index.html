@@ -68,6 +68,8 @@
         <div class="project-card row">
           <!-- Content Section -->
           <div class="col-md-9">
+
+            <div id="Descript_1"  class="section">
             <h2>2-DOF Laser Projector</h2>
             <div class="project-tags mb-3">
               <span class="badge custom-badge-1">Altium</span>
@@ -81,15 +83,22 @@
             A 3rd year electrical engineering controls project built within 4 months! The challenge was to create a robot/system with 2 degrees of freedom capable of projecting an image with a laser. We were one of a few teams who had a working system that featured a fully custom PCB! <br>
             We had full authority over design and implementation with a few RGS to satisfy such as budget constraints and no tape or glue for mounting HW.
             </p>
+            </div>
 
+            <div id="Design_1"  class="section">
             <h2>Our Design</h2>
             <p>
             After multiple brainstorming sessions, we finalized a design featuring a static mechanical structure housing a laser and two brushed DC motors, each with a mirror mounted on its shaft. The mirrors would reflect the laser beam, and by rotating at high speeds, they could create coherent shape projections. The motors were controlled by a PCB motor controller, which utilized a quadrature decoder with a counter-based finite state machine (FSM) to determine motor position, direction, and speed. This feedback information was sent to a PID control system, which calculated the required duty cycle and direction for the motors to project the desired shape accurately. <br><br>
 
             I was responsible for the electrical component of the project, as well as integration between the software, hardware and mechanical subsystems.
             </p>
+            </div>
 
+            <div id="Proto_1"  class="section">
             <h2>Prototyping</h2>
+            </div>
+
+            <div id="PCB_1"  class="section">
             <h2>The PCB</h2>
             <ul>
               <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
@@ -116,32 +125,40 @@
               <div class="col-6"><img src="docs/motor_control_pcba.jpg" alt="Project Image" class="img-fluid mb-3"></div>
             </div>
 
+            </div>
+
+            <div id="Test_1"  class="section">
             <h2>Integration/Testing </h2>
             <ul>
               <li>During bring up, I used STM32CubeIDE to test UART and GPIO functionality</li>
               <li>The software team chose to use the ArduinoIDE to develop the system on, so I also helped set up peripheral configuration</li>
+            </ul>
               <iframe src="https://drive.google.com/file/d/1CpL1HhrJuRxp-U4ZZ-wed7EdEz0ySvsr/preview" allow="autoplay"></iframe>
+            <ul>
               <li>I sized and created cables for the motor to the PCB (I accidentally made them too long though oops) and communicated with the mechanical team on hardware placement</li>
             </ul>
+            </div>
 
+            <div id="Result_1"  class="section">
             <h2>RESULTS!</h2>
             <p>
             <iframe src="https://drive.google.com/file/d/1BKninn-CZI9WCh-Gt-o3R0JoSbXST9tZ/preview" allow="autoplay"></iframe>
             <br>
             Shout out to my amazing team (Do, Sofiya and John) for pulling late nights and helping make this project successful😊
             </p>
+            </div>
 
           </div>
 
           <!-- Table of Contents -->
           <div class="col-md-3 menu-bar">
             <ul class="list-unstyled">
-              <li><a class="text-decoration-none">What Is It</a></li>
-              <li><a class="text-decoration-none">Our Design</a></li>
-              <li><a class="text-decoration-none">Prototyping</a></li>
-              <li><a class="text-decoration-none">The PCB</a></li>
-              <li><a class="text-decoration-none">Integration/Testing</a></li>
-              <li><a class="text-decoration-none">RESULTS!</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#Descript_1">What Is It</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#Design_1">Our Design</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#Proto_1">Prototyping</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#PCB_1">The PCB</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#Test_1">Integration/Testing</a></li>
+              <li><a class="text-decoration-none custom-colour-1" href="#Result_1">RESULTS!</a></li>
             </ul>
           </div>
         </div>

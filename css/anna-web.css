@@ -166,9 +166,9 @@ main {
 
 }
 
-.custom-badge-1{
-  background-color: #59a6a2;
-}
+.custom-colour-1 { color: #59a6a2; }
+
+.custom-badge-1{ background-color: #59a6a2; }
 
 /* Footer */
 footer {
