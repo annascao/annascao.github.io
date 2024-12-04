@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+
 </head>
 <body>
 
@@ -34,28 +36,32 @@
     </nav>
   </header>
 
-  <main>
+
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>ANNA CAO</h1>
-        <p id="typed-text"></p>
+      <div class="hero-content">
+
+        <div class="hero-text">
+          <h1>ANNA CAO</h1>
+          <p id="typed-text"></p>
+        </div>
+
+        <div class="about-box">
+          <h2>ABOUT ME</h2>
+            <p>
+              Hello! My name is Anna, and I am currently studying electrical engineering at UBC.
+              I am passionate about working with embedded systems and leveraging my skills in software development and hardware design/integration to create cool things.⚡😼<br>
+              In my free time, I like to ski, bake and, draw!
+            </p>
+        </div>
+
       </div>
-      <div class="about-box">
-        <h2>ABOUT ME</h2>
-        <p>
-          Hello! My name is Anna, and I am currently studying electrical engineering at UBC.
-          I am passionate about working with embedded systems, leveraging my skills in software development and hardware design/integration to create cool things.⚡😼<br>
-          In my free time, I like to ski, bake and draw!
-        </p>
-      </div>
-    </div>
   </section>
 
   <!-- Projects Section (using bootstrap cause easier to maintain/add more content and adding some stylistic changes) -->
   <div class="container py-5" id="Projects">
+
     <div class="row">
       <div class="col-12">
         <h1 class="mb-4">Projects</h1>
@@ -68,29 +74,248 @@
         <div class="project-card row">
           <!-- Content Section -->
           <div class="col-md-9">
-            <h2>Avionics System (Flight Sensing)</h2>
-            <div class="project-tags mb-3">
-              <span class="badge custom-badge-1">C/C++</span>
-              <span class="badge custom-badge-1">RTOS</span>
-              <span class="badge custom-badge-1">STM32CubeIDE</span>
-              <span class="badge custom-badge-1">PlatformIO</span>
-              <span class="badge custom-badge-1">Altium</span>
+
+            <div id="Descript_2"  class="section">
+              <h2>Avionics: Aircraft Sensor System</h2>
+              <div class="project-tags mb-3">
+                <span class="badge custom-badge-1">C/C++</span>
+                <span class="badge custom-badge-1">RTOS</span>
+                <span class="badge custom-badge-1">STM32CubeIDE</span>
+                <span class="badge custom-badge-1">PlatformIO</span>
+                <span class="badge custom-badge-1">Altium</span>
+                <span class="badge custom-badge-1">Soldering</span>
+              </div>
+                <p>I am a part of UBC AeroDesign, a student design team that designs and builds fixed-wing aircraft to compete in the annual SAE Aero Design Competition.
+
+                As a lead on the Avionics team, I am primarily focused on designing the sensing and data acquisition system of the plane from its hardware all the way to the firmware, and eventually integration with the entire plane.
+                </p>
+
+                <div class="text-center">
+                  <div class="col-6 d-inline-block">
+                    <img src="docs/advanced_plane.jpg" alt="Coolest Plane Ever" class="img-fluid me-3 mb-3">
+                  </div>
+                </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet facilisis risus. Cras ut erat ut augue sodales convallis.</p>
+
+            <div id="Firmware"  class="section">
+              <h4>Firmware</h4>
+                <p>
+                My codebase which was used during 2024 SAE’s competition was written in C++ in PlatformIO using the Arduino framework.
+                <ul>
+                  <li>This choice was made due time constraints and designing/bringing up/validating the PCB in parallel</li>
+                  <li>Pros: Pre-existing libraries allow for faster development</li>
+                  <li>Cons: Libraries are very abstracted and there is a lot of unnecessary code, makes it difficult to customize firmware</li>
+                </ul>
+                There are 3 Tasks:
+                <ul>
+                  <li>One to collect sensor data and push to a message queue</li>
+                  <li>One to pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
+                  <li>One to calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
+                </ul>
+
+                Here is a snippet of the code (main file)!
+                </p>
+
+                <div class="bg-light p-3 rounded border" style="max-height: 400px; max-width: 700px; overflow-y: auto;">
+                  <pre><code class="language-c">
+  /**
+  * @file main.cpp
+  * @author Anna
+  * @brief This program collects data from a ZEDF9P, BNO-055,and BMP390
+  * and outputs a comma separated string of values or byte array.
+  * Can also save data to an SD card and upon every reset/power cycle,
+  * a new file will be created.
+  * @date created 2024
+  *
+  */
+
+  #include &lt;Arduino.h&gt;
+  #include &lt;STM32FreeRTOS.h&gt;
+  #include "task.h"
+  #include "queue.h"
+  #include "sensor_setup.h"
+  #include "data_logging.h"
+  #include "sensors.h"
+
+  static long lastSend = 0;
+  void buttonInterrupt();
+  volatile bool isCalibrating = false;
+
+  QueueHandle_t sensorsQueue;
+
+  TaskHandle_t taskReadSensorsHandle = NULL;
+  TaskHandle_t taskSendSensorsHandle = NULL;
+  TaskHandle_t taskCalibrateHandle = NULL;
+
+  void taskReadSensors(void *pvParameters);
+  void taskSendSensors(void *pvParameters);
+  void taskCalibrate(void *pvParameters);
+
+  void setup() {
+    Serial.begin(115200);
+    while (!Serial) delay(10);
+
+    if (!initializeSensors()) {
+      Serial.println("Sensor initialization failed!");
+      while (1);
+    }
+
+    pinMode(PB8, INPUT);
+    attachInterrupt(digitalPinToInterrupt(PB8), buttonInterrupt, RISING);
+
+    configureSensors();
+    initializeSDCard();
+    createNewFile();
+
+    sensorsQueue = xQueueCreate(10, sizeof(sensors));
+
+    xTaskCreate(taskReadSensors, "taskReadSensors", 256, NULL, 2, &taskReadSensorsHandle);
+    xTaskCreate(taskSendSensors, "taskSendSensors", 256, NULL, 1, &taskSendSensorsHandle);
+    xTaskCreate(taskCalibrate, "taskCalibrate", 256, NULL, 3, &taskCalibrateHandle);
+
+    vTaskStartScheduler();
+  }
+
+  void loop() {}
+
+  void taskReadSensors(void *pvParameters){
+    sensors sensorData;
+    TickType_t xLastWakeTime = xTaskGetTickCount(); // get current tick count
+
+    while(1){
+      if (!isCalibrating) {
+        lastSend = millis();
+        readSensors(lastSend, &sensorData);
+        xQueueSend(sensorsQueue, &sensorData, portMAX_DELAY);
+        vTaskDelayUntil(&xLastWakeTime, (500 / portTICK_RATE_MS)); // absolute time at which the task wishes to unblock
+      }
+    }
+  }
+
+  void taskSendSensors(void *pvParameters){
+    sensors sensorData = {0};
+
+    while(1) {
+      if (xQueueReceive(sensorsQueue, &sensorData, portMAX_DELAY) == pdPASS) {
+        sendSensors(sensorData);
+      }
+    }
+  }
+
+  void taskCalibrate(void *pvParameters) {
+    sensorsCalibration calibrationData;
+
+      while (1) {
+          ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //waiting for ISR notification
+          isCalibrating = true;
+
+          calibrateBNO(&calibrationData); // actually want to call calibrateSensors() but just testing
+
+          xQueueReset(sensorsQueue); //clear queue, tryna prevent backlog of old sensor data
+          isCalibrating = false;
+      }
+  }
+
+  void buttonInterrupt() {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xTaskNotifyFromISR(taskCalibrateHandle, 0, eNoAction, &xHigherPriorityTaskWoken); // Notify the calibration task directly (using this as a light weight binary semaphore)
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will still see that the priority 3 task is ready
+  }
+                  </code></pre>
+                </div>
+                <br><br>
+
+                <p>Cool Highlight: Testing sensor board with ZEDF9P using RTK!!! Below shows logged GNSS coordinates without and with RTK</p>
+                <div class="d-flex justify-content-center">
+                  <div class="me-3">
+                    <img src="docs/wo_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px">
+                  </div>
+                  <div>
+                    <img src="docs/w_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px">
+                  </div>
+                </div>
+                <br>
+
+                <p>
+                  Improving the Firmware
+                  <ul>
+                    <li>Currently moving firmware to the STM32CubeIDE and using the STM32 Hardware Abstraction Layer to write our own sensor drivers</li>
+                    <li>I have written a sensor drivers for the BNO055 IMU and MS4525DO in C using STM32’s HAL</li>
+                  </ul>
+                </p>
+
+            </div>
+
+            <div id="Hardware"  class="section">
+              <h4>Hardware</h4>
+                <p>2023/2024 Sensor Board
+                  <ul>
+                    <li>Processor</li>
+                      <ul>
+                        <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
+                        <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
+                      </ul>
+                    <li>Suite of sensors for various flight data including…
+                      <ul>
+                        <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
+                      </ul>
+                    </li>
+                    <li>Data logging & telemetry</li>
+                  </ul>
+                </p>
+                <div class="d-flex justify-content-center">
+                  <div class="me-3">
+                    <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid" style="max-width: 400px">
+                  </div>
+                </div>
+                <br>
+                <p>2024-Present Sensor Board -> Flight Controller
+                  <ul>
+                    <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
+                    <li>9  PWM peripherals for control surfaces</li>
+                    <li>1 R/C input for ELRS</li>
+                    <li>4 analog inputs for current & voltage sensing</li>
+                    <li>Suite of sensors for various flight data including…
+                      <ul>
+                        <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
+                      </ul>
+                    </li>
+                    <li>1 CAN Bus interface to an external airspeed sensor</li>
+                    <li>Data logging & telemetry</li>
+                    <li>Friendly UI such as a USB to serial chip converter</li>
+                  </ul>
+                </p>
+
+            </div>
+
+            <div id="Cooking"  class="section">
+              <h4>Currently Cooking Up...</h4>
+                <p>...turning this sensor board to a fully custom made flight controller capable of manual flight and auto pilot.<br><br>
+                Due to SAE’s 3-year design cycle & rule change, this year we had to adjust the avionics system to meet the requirements of the new design cycle. The key changes impacting the system are:
+                <ul>
+                  <li>Bonus Points for Auto Pilot</li>
+                  <li>Total Aircraft Weight Limit of 3.5lbs</li>
+                </ul>
+                Stay tuned for more updates!
+                </p>
+
+            </div>
+
+
           </div>
 
           <!-- Menu Bar Section -->
           <div class="col-md-3 menu-bar">
             <ul class="list-unstyled">
-              <li><a href="#" class="text-decoration-none custom-colour-1">What Is It</a></li>
-              <li><a href="#" class="text-decoration-none custom-colour-1">Firmware</a></li>
-              <li><a href="#" class="text-decoration-none custom-colour-1">Hardware</a></li>
-              <li><a href="#" class="text-decoration-none custom-colour-1">What's Next?</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Descript_2>What Is It</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Firmware>Firmware</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Hardware>Hardware</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Cooking">Currently Cooking Up…</a></li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- Project Card END-->
+      <!-- End of a Project Card -->
 
       <!-- Project Card START -->
       <div class="col-12">
@@ -99,103 +324,102 @@
           <div class="col-md-9">
 
             <div id="Descript_1"  class="section">
-            <h2>2-DOF Laser Projector</h2>
-            <div class="project-tags mb-3">
-              <span class="badge custom-badge-1">Altium</span>
-              <span class="badge custom-badge-1">Circuit Design</span>
-              <span class="badge custom-badge-1">STM32H7 Microcontroller</span>
-              <span class="badge custom-badge-1">C</span>
-              <span class="badge custom-badge-1">Controls</span>
-            </div>
+              <h2>2-DOF Laser Projector</h2>
+                <div class="project-tags mb-3">
+                  <span class="badge custom-badge-1">Altium</span>
+                  <span class="badge custom-badge-1">Circuit Design</span>
+                  <span class="badge custom-badge-1">STM32H7 Microcontroller</span>
+                  <span class="badge custom-badge-1">C</span>
+                  <span class="badge custom-badge-1">Controls</span>
+                </div>
 
-            <p>
-            A 3rd year electrical engineering controls project built within 4 months! The challenge was to create a robot/system with 2 degrees of freedom capable of projecting an image with a laser. We were one of a few teams who had a working system that featured a fully custom PCB! <br>
-            We had full authority over design and implementation with a few RGS to satisfy such as budget constraints and no tape or glue for mounting HW.
-            </p>
+                <p>
+                A 3rd year electrical engineering controls project built within 4 months! The challenge was to create a robot/system with 2 degrees of freedom capable of projecting an image with a laser. We were one of a few teams who had a working system that featured a fully custom PCB! <br>
+                We had full authority over design and implementation with a few RGS to satisfy such as budget constraints and no tape or glue for mounting HW.
+                </p>
             </div>
 
             <div id="Design_1"  class="section">
-            <h2>Our Design</h2>
-              <p>
-              After multiple brainstorming sessions, we finalized a design featuring a static mechanical structure housing a laser and two brushed DC motors, each with a mirror mounted on its shaft. The mirrors would reflect the laser beam, and by rotating at high speeds, they could create coherent shape projections. The motors were controlled by a PCB motor controller, which utilized a quadrature decoder with a counter-based finite state machine (FSM) to determine motor position, direction, and speed. This feedback information was sent to a PID control system, which calculated the required duty cycle and direction for the motors to project the desired shape accurately. <br><br>
+              <h4>Our Design</h4>
+                <p>
+                After multiple brainstorming sessions, we finalized a design featuring a static mechanical structure that houses a laser and two brushed DC motors, each with a mirror mounted on its shaft. The mirrors would reflect the laser beam, and by rotating at high speeds, they could create coherent shape projections. The motors were controlled by a PCB motor controller, which utilized a quadrature decoder with a counter-based finite state machine (FSM) to determine motor position, direction, and speed. This feedback information was sent to a PID control system, which calculated the required duty cycle and direction for the motors to project the desired shape accurately. <br><br>
 
-              I was responsible for the electrical component of the project, as well as integration between the software, hardware and mechanical subsystems.
-              </p>
+                I was responsible for the electrical component of the project, as well as integration between the software, hardware and mechanical subsystems.
+                </p>
             </div>
 
             <div id="Proto_1"  class="section">
-            <h2>Prototyping</h2>
-              <ul>
-                <li>Testing with a simple breadboard setup and function generator to evaluate the fet’s Vgs behaviour at varying frequencies</li>
-                <li>I wanted to avoid as much undershoot (didn’t want it to take too long to turn on the fet and cause them get hot) or overshoot (didn’t want a voltage spike) during the mosfet’s turn on and off as possible and validate that my circuit worked at software team’s request of 50kHz frequency</li>
-              </ul>
-              <div class="d-flex justify-content-center">
-                <div class="me-3">
-                  <img src="docs/hbridge.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px">
+              <h4>Prototyping</h4>
+                <ul>
+                  <li>Testing with a simple breadboard setup and function generator to evaluate the fet’s Vgs behaviour at varying frequencies</li>
+                  <li>I wanted to avoid as much undershoot (didn’t want it to take too long to turn on the fet and risk them burning up) or overshoot (didn’t want a voltage spike) during the mosfet’s turn on and off as possible and validate that my circuit worked at software team’s request of 50kHz frequency</li>
+                </ul>
+                <div class="d-flex justify-content-center">
+                  <div class="me-3">
+                    <img src="docs/hbridge.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px">
+                  </div>
+                  <div>
+                    <img src="docs/hbrdige_test.png" alt="Project Image" class="img-fluid" style="max-width: 250px">
+                  </div>
                 </div>
-                <div>
-                  <img src="docs/hbrdige_test.png" alt="Project Image" class="img-fluid" style="max-width: 250px">
-                </div>
-              </div>
             </div>
 
             <div id="PCB_1"  class="section">
-            <h2>The PCB</h2>
-              <ul>
-                <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
-                <li>Powered by 12V with a 12V DC 24 watt power adapter
-                  <ul>
-                    <li>Buck converter steps the voltage from 12V to 5V</li>
-                    <li>LDO steps the voltage from 5V to 3V3</li>
-                    <li>Dual power supply system, which selects between USB supplied 5V and buck supplies 5V</li>
-                  </ul>
-                </li>
-                <li>Gate Driver & Shoot Through Protection: IRS2004PB</li>
-                <li>H-Bridge: IRFZ44N MOSFETs</li>
-                <li>USB to serial chip converter (FDI230XS-R) allowing for UART comms with the computer</li>
-                <li>Debugging features
-                  <ul>
-                    <li>Switches, LEDs, and breakout pins</li>
-                  </ul>
-                </li>
-                <li>Motor, encoder, laser, and decoder are connected externally using JST connectors</li>
-              </ul>
+              <h4>The PCB</h4>
+                <ul>
+                  <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
+                  <li>Powered by 12V with a 12V DC 24 watt power adapter
+                    <ul>
+                      <li>Buck converter steps the voltage from 12V to 5V</li>
+                      <li>LDO steps the voltage from 5V to 3V3</li>
+                      <li>Dual power supply system, which selects between USB supplied 5V and buck supplies 5V</li>
+                    </ul>
+                  </li>
+                  <li>Gate Driver & Shoot Through Protection: IRS2004PB</li>
+                  <li>H-Bridge: IRFZ44N MOSFETs</li>
+                  <li>USB to serial chip converter (FTDI230XS-R) allowing for UART comms with the computer</li>
+                  <li>Debugging features
+                    <ul>
+                      <li>Switches, LEDs, and breakout pins</li>
+                    </ul>
+                  </li>
+                  <li>Motor, encoder, laser, and decoder are connected externally using JST connectors</li>
+                </ul>
 
-              <!-- Low key might be something wrong with this-->
-              <div class="text-center">
-                <div class="col-6 d-inline-block">
-                  <img src="docs/motor_control_pcb.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
+                <!-- Low key might be something wrong with this-->
+                <div class="text-center">
+                  <div class="col-6 d-inline-block">
+                    <img src="docs/motor_control_pcb.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
+                  </div>
+                  <div class="col-6 d-inline-block">
+                    <img src="docs/motor_control_pcba.jpg" alt="Project Image" class="img-fluid mb-3">
+                  </div>
                 </div>
-                <div class="col-6 d-inline-block">
-                  <img src="docs/motor_control_pcba.jpg" alt="Project Image" class="img-fluid mb-3">
-                </div>
-              </div>
-
             </div>
 
             <div id="Test_1"  class="section">
-            <h2>Integration/Testing </h2>
-              <ul>
-                <li>During bring up, I used STM32CubeIDE to test UART and GPIO functionality</li>
-                <li>The software team chose to use the ArduinoIDE to develop the system on, so I also helped set up peripheral configuration</li>
-              </ul>
-                <div class="text-center">
-                  <iframe src="https://drive.google.com/file/d/1CpL1HhrJuRxp-U4ZZ-wed7EdEz0ySvsr/preview" allow="autoplay"></iframe>
-                </div>
-              <ul>
-                <li>I sized and created cables for the motor to the PCB (I accidentally made them too long though oops) and communicated with the mechanical team on hardware placement</li>
-              </ul>
+              <h4>Integration/Testing </h4>
+                <ul>
+                  <li>During bring up, I used STM32CubeIDE to test UART and GPIO functionality</li>
+                  <li>The software team chose to use the ArduinoIDE to develop the system on, so I also helped set up peripheral configuration</li>
+                </ul>
+                  <div class="text-center">
+                    <iframe src="https://drive.google.com/file/d/1CpL1HhrJuRxp-U4ZZ-wed7EdEz0ySvsr/preview" allow="autoplay"></iframe>
+                  </div>
+                <ul>
+                  <li>I sized and created cables for the motor to the PCB (I accidentally made them too long though oops) and communicated with the mechanical team on hardware placement</li>
+                </ul>
             </div>
 
             <div id="Result_1"  class="section">
-            <h2>RESULTS!</h2>
-              <p>
-                <div class="text-center">
-                  <iframe src="https://drive.google.com/file/d/1BKninn-CZI9WCh-Gt-o3R0JoSbXST9tZ/preview" allow="autoplay"></iframe>
-                </div>
-              <br>
-              Shout out to my amazing team (Do, Sofiya and John) for pulling late nights and helping make this project successful😊
-              </p>
+              <h4>RESULTS!</h4>
+                <p>
+                  <div class="text-center">
+                    <iframe src="https://drive.google.com/file/d/1BKninn-CZI9WCh-Gt-o3R0JoSbXST9tZ/preview" allow="autoplay"></iframe>
+                  </div>
+                <br>
+                Shout out to my amazing team (Do, Sofiya and John) for pulling late nights and helping make this project successful😊
+                </p>
             </div>
 
           </div>
@@ -203,22 +427,23 @@
           <!-- Table of Contents -->
           <div class="col-md-3 menu-bar">
             <ul class="list-unstyled">
-              <li><a class="text-decoration-none custom-colour-1" href="#Descript_1">What Is It</a></li>
-              <li><a class="text-decoration-none custom-colour-1" href="#Design_1">Our Design</a></li>
-              <li><a class="text-decoration-none custom-colour-1" href="#Proto_1">Prototyping</a></li>
-              <li><a class="text-decoration-none custom-colour-1" href="#PCB_1">The PCB</a></li>
-              <li><a class="text-decoration-none custom-colour-1" href="#Test_1">Integration/Testing</a></li>
-              <li><a class="text-decoration-none custom-colour-1" href="#Result_1">RESULTS!</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Descript_1">What Is It</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Design_1">Our Design</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Proto_1">Prototyping</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#PCB_1">The PCB</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Test_1">Integration/Testing</a></li>
+              <li class="py-2"><a class="text-decoration-none custom-colour-1" href="#Result_1">RESULTS!</a></li>
             </ul>
           </div>
+
+        </div>
         </div>
       </div>
-      <!-- Project Card END-->
-
+    <!-- Project Card END-->
     </div>
   </div>
 
-  </main>
+
 </body>
 
   <!-- Footer Section -->
@@ -235,5 +460,7 @@
   <!-- Scripts -->
   <script src="js/typing.js" defer></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
 
 </html>

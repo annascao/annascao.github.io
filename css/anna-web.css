@@ -146,12 +146,14 @@ main {
 }
 
 /* Projects/Posts */
+
 .project-card {
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .project-tags span {
@@ -160,7 +162,8 @@ main {
 
 .menu-bar {
   position: sticky;
-  top: 20px;
+  /*top: 20px;*/
+  top: 0;
   border-left: 2px solid #ddd;
   padding-left: 20px;
 
