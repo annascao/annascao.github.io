@@ -8,8 +8,8 @@
   <meta name="keywords" content="Anna, Anna Cao, Anna Portfolio, Anna Cao Portfolio, Github Pages">
   <link rel="stylesheet" href="css/anna-web.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
 
 </head>
@@ -18,28 +18,41 @@
   <!-- Navigation Bar -->
   <header>
     <nav>
-        <div class="nav-left">
-            <ul>
-                <li>
-                  <a href="https://github.com/annascao" target="_blank"> <i class="fab fa-github icon-nav"></i></a>
-                  <a href="https://linkedin.com/in/annashuqicao" target="_blank"> <i class="fab fa-linkedin icon-nav"></i></a>
-                </li>
-            <ul>
-        </div>
-        <div class="nav-right">
-            <ul>
-                <li><a href="#hero">HOME</a></li>
-                <li><a href="#Projects">PROJECTS</a></li>
-                <li><a href="docs/Anna_Resume_11_27_2024.pdf" target="_blank">RESUME</a></li>
-            <ul>
-        </div>
+
+      <ul class="nav-left">
+        <li>
+          <a href="https://github.com/annascao" class="nav-icon"><i class="fab fa-github"></i></a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/annashuqicao" class="nav-icon"><i class="fab fa-linkedin"></i></a>
+        </li>
+      </ul>
+
+      <ul class="nav-right">
+        <li class="nav-item">
+          <a href="#hero" >HOME</a>
+        </li>
+        <li class="nav-item">
+          <a href="#Projects" >PROJECTS</a>
+        </li>
+        <li class="nav-item">
+          <a href="docs/Anna_Resume_11_27_2024.pdf">RESUME</a>
+        </li>
+      </ul>
+
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+
     </nav>
   </header>
 
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" style="background-image: url('docs/home-background.jpg');"></div>
       <div class="hero-content">
 
         <div class="hero-text">
@@ -107,11 +120,11 @@
                   <li>Cons: Libraries are very abstracted and there is a lot of unnecessary code, makes it difficult to customize firmware</li>
                 </ul>
                 There are 3 Tasks:
-                <ul>
-                  <li>One to collect sensor data and push to a message queue</li>
-                  <li>One to pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
-                  <li>One to calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
-                </ul>
+                <ol>
+                  <li>Collect sensor data and push to a message queue</li>
+                  <li>Pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
+                  <li>Calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
+                </ol>
 
                 Here is a snippet of the code (main file)!
                 </p>
@@ -209,7 +222,7 @@
           ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //waiting for ISR notification
           isCalibrating = true;
 
-          calibrateBNO(&calibrationData); // actually want to call calibrateSensors() but just testing
+          calibrateSensors(&calibrationData);
 
           xQueueReset(sensorsQueue); //clear queue, tryna prevent backlog of old sensor data
           isCalibrating = false;
@@ -458,7 +471,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/typing.js" defer></script>
+  </script>
+  <script src="js/typing.js"></script>
+  <script src="js/mobile.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
