@@ -102,11 +102,11 @@ main {
   padding: 150px;
 }
 
-.hero-bg {
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* idk why yet but i need the width and height defined here.... */
+  width: 100%;
   height: 100vh;
   opacity: 0.5;
   z-index: 1;
@@ -283,8 +283,9 @@ footer {
     left: 0;
   }
 
-  .hero-bg { /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+  .hero-background { /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
     background-attachment: scroll;
     background-size: cover;
+    background-position: center;
   }
 }
