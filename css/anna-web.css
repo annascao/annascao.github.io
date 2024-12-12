@@ -247,16 +247,8 @@ footer {
   }
 }
 
-/* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
-@media only screen and (max-width: 768) {
-  .hero-bg {
-    background-attachment: scroll;
-    background-size: cover;
-  }
-}
-
-
 @media(max-width:768px){
+  
   .hamburger{
     display: block;
   }
@@ -289,5 +281,10 @@ footer {
   }
   .nav-right.active{
     left: 0;
+  }
+
+  .hero-bg { /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+    background-attachment: scroll;
+    background-size: cover;
   }
 }
