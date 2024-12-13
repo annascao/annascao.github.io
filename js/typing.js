@@ -11,5 +11,5 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
-    type(); // Start typing
+    setTimeout(type, 1000); // 1 second delay till starts to type
 });
