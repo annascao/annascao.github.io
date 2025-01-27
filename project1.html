@@ -77,6 +77,67 @@
                 </div>
             </div>
 
+            <div id="Hardware"  class="section">
+              <h4>Hardware</h4>
+                <p>2023/2024: Sensor Board
+                  <ul>
+                    <li>Processor</li>
+                      <ul>
+                        <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
+                        <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
+                      </ul>
+                    <li>Suite of sensors for various flight data including…
+                      <ul>
+                        <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
+                      </ul>
+                    </li>
+                    <li>Data logging & telemetry</li>
+                  </ul>
+                </p>
+                <div class="text-center">
+                  <div class="col-6 d-inline-block">
+                    <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
+                  </div>
+                </div>
+                <br>
+                <p>2024-Present: Flight Controller
+                  <ul>
+                    <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
+                    <li>9  PWM peripherals for control surfaces</li>
+                    <li>1 R/C input for ELRS</li>
+                    <li>4 analog inputs for current & voltage sensing</li>
+                    <li>Suite of sensors for various flight data including…
+                      <ul>
+                        <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
+                      </ul>
+                    </li>
+                    <li>1 CAN Bus interface to an external airspeed sensor</li>
+                    <li>Data logging & telemetry</li>
+                    <li>Friendly UI such as a USB to serial chip converter</li>
+                  </ul>
+                </p>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                  <div class="me-3 mb-3">
+                    <img src="docs/fc_altium.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+                  </div>
+                  <div class="mb-3">
+                    <img src="docs/fc_altium2.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center">
+                  <div class="me-3 mb-3">
+                    <img src="docs/fc_front.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+                  </div>
+                  <div class="mb-3">
+                    <img src="docs/fc_back.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+                  </div>
+                </div>
+                
+                <br>
+
+            </div>
+
             <div id="Firmware"  class="section">
               <h4>Firmware</h4>
                 <p>
@@ -223,59 +284,6 @@
                     <li>I have written a sensor drivers for the BNO055 IMU and MS4525DO in C using STM32’s HAL</li>
                   </ul>
                 </p>
-
-            </div>
-
-            <div id="Hardware"  class="section">
-              <h4>Hardware</h4>
-                <p>2023/2024: Sensor Board
-                  <ul>
-                    <li>Processor</li>
-                      <ul>
-                        <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
-                        <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
-                      </ul>
-                    <li>Suite of sensors for various flight data including…
-                      <ul>
-                        <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
-                      </ul>
-                    </li>
-                    <li>Data logging & telemetry</li>
-                  </ul>
-                </p>
-                <div class="text-center">
-                  <div class="col-6 d-inline-block">
-                    <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
-                  </div>
-                </div>
-                <br>
-                <p>2024-Present: Flight Controller
-                  <ul>
-                    <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
-                    <li>9  PWM peripherals for control surfaces</li>
-                    <li>1 R/C input for ELRS</li>
-                    <li>4 analog inputs for current & voltage sensing</li>
-                    <li>Suite of sensors for various flight data including…
-                      <ul>
-                        <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
-                      </ul>
-                    </li>
-                    <li>1 CAN Bus interface to an external airspeed sensor</li>
-                    <li>Data logging & telemetry</li>
-                    <li>Friendly UI such as a USB to serial chip converter</li>
-                  </ul>
-                </p>
-
-                <div class="d-flex flex-wrap justify-content-center">
-                  <div class="me-3 mb-3">
-                    <img src="docs/fc_front.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                  <div class="mb-3">
-                    <img src="docs/fc_back.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                </div>
-                
-                <br>
 
             </div>
 
