@@ -67,7 +67,7 @@
                 <br><br>
                 The setup featured a static base housing two servos, each controlling a mounted mechanism to adjust the pitch and yaw angles of the rubber band shooter. A camera was used to capture the target's position, with the data processed by a web app to identify precise coordinates. These coordinates were transmitted to a Raspberry Pi, which ran a control system to calculate the required adjustments for each servo. 
                 <br><br>
-                This was a fun learning experience where we got to try out new technologies and tools and it challenged us to think on our feet with limited time!
+                This was a fun learning experience where we got to try out new technologies and tools and it challenged us to think on our feet with limited time! We hope to continue and refine this project!
                 </p>
 
                 <div class="text-center">
@@ -75,6 +75,7 @@
                     <img src="docs/webapp_shooter.jpg" alt="project" class="img-fluid me-3 mb-3">
                   </div>
                 </div>
+
             </div>
 
             <div id="Software"  class="section">
@@ -99,9 +100,15 @@
                 </ol>
                 <p>
                 The laptop hosted the user interface, where a Python-based application utilized YOLOv5 for object detection and SORT for object tracking. Users could interact with the interface to select a target in the live video feed, streamed from a usb camera. OpenCV was used to render the video feed with real-time visual overlays, including bounding boxes and center points. The selected target's coordinates (x, y) were computed and sent via a REST API using HTTP POST requests to the Raspberry Pi.
-                <br><br>
+                <p>A rough concept of the UI, using Three.js to include an interactive element:</p>
+                <div class="text-center">
+                  <div class="col-6 d-inline-block">
+                    <img src="docs/trackatack.gif" alt="GIF" class="img-fluid me-3 mb-3">
+                  </div>
+                </div>
                 The Raspberry Pi functioned as the control center for the hardware. It hosted a Flask server that received target coordinates from the laptop's application. These coordinates were processed in a control system that calculated the adjustments for the servos controlling the rubber band shooter’s pitch and yaw.
                 </p>
+
             </div>
 
             <div id="Mechanical"  class="section">
