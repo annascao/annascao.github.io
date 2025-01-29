@@ -239,7 +239,7 @@ main {
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -286,6 +286,15 @@ footer {
 .icon:hover {
   color: #59a6a2;
   transition: color 0.3s ease;
+}
+
+#scrollToTop {
+  background-color: transparent;
+  border: none;
+  color: #40403f;
+  font-size: 1.7rem;
+  font-weight: bold;
+  display: none; /*initially dont display*/
 }
 
 /* MEDIA QUERRIES */
