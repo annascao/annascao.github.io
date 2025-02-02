@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJT82Y7LSF"></script>
   <script>
@@ -60,260 +59,256 @@
 
     <div class="row">
       <!-- Start of a Project Card -->
-      <div class="col-12">
-        <div class="project-card row">
-          <!-- Content Section -->
-          <div class="col-md-9">
+      <div class="col-md-9">
 
-            <div id="Descript_2"  class="section">
-              <h2>UBC AeroDesign Avionics</h2>
-              <div class="project-tags mb-3">
-                <span class="badge custom-badge-1">C/C++</span>
-                <span class="badge custom-badge-1">RTOS</span>
-                <span class="badge custom-badge-1">STM32CubeIDE</span>
-                <span class="badge custom-badge-1">PlatformIO</span>
-                <span class="badge custom-badge-1">Altium</span>
-                <span class="badge custom-badge-1">Soldering</span>
+        <div id="Descript_2"  class="section">
+          <h2>UBC AeroDesign Avionics</h2>
+          <div class="project-tags mb-3">
+            <span class="badge custom-badge-1">C/C++</span>
+            <span class="badge custom-badge-1">RTOS</span>
+            <span class="badge custom-badge-1">STM32CubeIDE</span>
+            <span class="badge custom-badge-1">PlatformIO</span>
+            <span class="badge custom-badge-1">Altium</span>
+            <span class="badge custom-badge-1">Soldering</span>
+          </div>
+            <p>I am a part of UBC AeroDesign, a student design team that designs and builds fixed-wing aircraft to compete in the annual SAE Aero Design Competition.<br>
+
+            As a lead on the Avionics team, I focus on designing and developing the flight controller for the plane, including sensing and data acquisition systems, hardware design, firmware implementation, and integration with the entire aircraft.
+            </p>
+
+            <div class="text-center">
+              <div class="col-6 d-inline-block">
+                <img src="docs/advanced_plane.jpg" alt="Coolest Plane Ever" class="img-fluid me-3 mb-3">
               </div>
-                <p>I am a part of UBC AeroDesign, a student design team that designs and builds fixed-wing aircraft to compete in the annual SAE Aero Design Competition.<br>
-
-                As a lead on the Avionics team, I focus on designing and developing the flight controller for the plane, including sensing and data acquisition systems, hardware design, firmware implementation, and integration with the entire aircraft.
-                </p>
-
-                <div class="text-center">
-                  <div class="col-6 d-inline-block">
-                    <img src="docs/advanced_plane.jpg" alt="Coolest Plane Ever" class="img-fluid me-3 mb-3">
-                  </div>
-                </div>
             </div>
+        </div>
 
-            <div id="Hardware"  class="section">
-              <h4>Hardware</h4>
-                <p>2023/2024: Sensor Board
+        <div id="Hardware"  class="section">
+          <h4>Hardware</h4>
+            <p>2023/2024: Sensor Board
+              <ul>
+                <li>Processor</li>
                   <ul>
-                    <li>Processor</li>
-                      <ul>
-                        <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
-                        <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
-                      </ul>
-                    <li>Suite of sensors for various flight data including…
-                      <ul>
-                        <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
-                      </ul>
-                    </li>
-                    <li>Data logging & telemetry</li>
+                    <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
+                    <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
                   </ul>
-                </p>
-                <div class="text-center">
-                  <div class="col-6 d-inline-block">
-                    <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
-                  </div>
-                </div>
-                <br>
-                <p>2024-Present: Flight Controller
+                <li>Suite of sensors for various flight data including…
                   <ul>
-                    <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
-                    <li>9  PWM peripherals for control surfaces</li>
-                    <li>1 R/C input for ELRS</li>
-                    <li>4 analog inputs for current & voltage sensing</li>
-                    <li>Suite of sensors for various flight data including…
-                      <ul>
-                        <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
-                      </ul>
-                    </li>
-                    <li>1 CAN Bus interface to an external airspeed sensor</li>
-                    <li>Data logging & telemetry</li>
-                    <li>Friendly UI such as a USB to serial chip converter</li>
+                    <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
                   </ul>
-                </p>
-
-                <div class="d-flex flex-wrap justify-content-center">
-                  <div class="me-3 mb-3">
-                    <img src="docs/fc_altium.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                  <div class="mb-3">
-                    <img src="docs/fc_altium2.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                </div>
-                <div class="d-flex flex-wrap justify-content-center">
-                  <div class="me-3 mb-3">
-                    <img src="docs/fc_front.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                  <div class="mb-3">
-                    <img src="docs/fc_back.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                </div>
-                
-                <br>
-
+                </li>
+                <li>Data logging & telemetry</li>
+              </ul>
+            </p>
+            <div class="text-center">
+              <div class="col-6 d-inline-block">
+                <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
+              </div>
             </div>
-
-            <div id="Firmware"  class="section">
-              <h4>Firmware</h4>
-                <p>
-                My codebase which was used during 2024 SAE’s competition was written in C++ in PlatformIO using the Arduino framework.
-                <ul>
-                  <li>This choice was made due time constraints and designing/bringing up/validating the PCB in parallel</li>
-                  <li>Pros: Pre-existing libraries allow for faster development</li>
-                  <li>Cons: Libraries are very abstracted and there is a lot of unnecessary code, makes it difficult to customize firmware</li>
-                </ul>
-                There are 3 Tasks:
-                <ol>
-                  <li>Collect sensor data and push to a message queue</li>
-                  <li>Pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
-                  <li>Calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
-                </ol>
-
-                Here is a snippet of the code (main file)!
-                </p>
-
-                <div class="bg-light p-3 rounded border" style="max-height: 400px; max-width: 700px; overflow-y: auto;">
-                  <pre><code class="language-c">
-  /**
-  * @file main.cpp
-  * @author Anna
-  * @brief This program collects data from a ZEDF9P, BNO-055,and BMP390
-  * and outputs a comma separated string of values or byte array.
-  * Can also save data to an SD card and upon every reset/power cycle,
-  * a new file will be created.
-  * @date created 2024
-  *
-  */
-
-  #include &lt;Arduino.h&gt;
-  #include &lt;STM32FreeRTOS.h&gt;
-  #include "task.h"
-  #include "queue.h"
-  #include "sensor_setup.h"
-  #include "data_logging.h"
-  #include "sensors.h"
-
-  static long lastSend = 0;
-  void buttonInterrupt();
-  volatile bool isCalibrating = false;
-
-  QueueHandle_t sensorsQueue;
-
-  TaskHandle_t taskReadSensorsHandle = NULL;
-  TaskHandle_t taskSendSensorsHandle = NULL;
-  TaskHandle_t taskCalibrateHandle = NULL;
-
-  void taskReadSensors(void *pvParameters);
-  void taskSendSensors(void *pvParameters);
-  void taskCalibrate(void *pvParameters);
-
-  void setup() {
-    Serial.begin(115200);
-    while (!Serial) delay(10);
-
-    if (!initializeSensors()) {
-      Serial.println("Sensor initialization failed!");
-      while (1);
-    }
-
-    pinMode(PB8, INPUT);
-    attachInterrupt(digitalPinToInterrupt(PB8), buttonInterrupt, RISING);
-
-    configureSensors();
-    initializeSDCard();
-    createNewFile();
-
-    sensorsQueue = xQueueCreate(10, sizeof(sensors));
-
-    xTaskCreate(taskReadSensors, "taskReadSensors", 256, NULL, 2, &taskReadSensorsHandle);
-    xTaskCreate(taskSendSensors, "taskSendSensors", 256, NULL, 1, &taskSendSensorsHandle);
-    xTaskCreate(taskCalibrate, "taskCalibrate", 256, NULL, 3, &taskCalibrateHandle);
-
-    vTaskStartScheduler();
-  }
-
-  void loop() {}
-
-  void taskReadSensors(void *pvParameters){
-    sensors sensorData;
-    TickType_t xLastWakeTime = xTaskGetTickCount(); // get current tick count
-
-    while(1){
-      if (!isCalibrating) {
-        lastSend = millis();
-        readSensors(lastSend, &sensorData);
-        xQueueSend(sensorsQueue, &sensorData, portMAX_DELAY);
-        vTaskDelayUntil(&xLastWakeTime, (500 / portTICK_RATE_MS)); // absolute time at which the task wishes to unblock
-      }
-    }
-  }
-
-  void taskSendSensors(void *pvParameters){
-    sensors sensorData = {0};
-
-    while(1) {
-      if (xQueueReceive(sensorsQueue, &sensorData, portMAX_DELAY) == pdPASS) {
-        sendSensors(sensorData);
-      }
-    }
-  }
-
-  void taskCalibrate(void *pvParameters) {
-    sensorsCalibration calibrationData;
-
-      while (1) {
-          ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //waiting for ISR notification
-          isCalibrating = true;
-
-          calibrateSensors(&calibrationData);
-
-          xQueueReset(sensorsQueue); //clear queue, tryna prevent backlog of old sensor data
-          isCalibrating = false;
-      }
-  }
-
-  void buttonInterrupt() {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xTaskNotifyFromISR(taskCalibrateHandle, 0, eNoAction, &xHigherPriorityTaskWoken); // Notify the calibration task directly (using this as a light weight binary semaphore)
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will still see that the priority 3 task is ready
-  }
-                  </code></pre>
-                </div>
-                <br><br>
-
-                <p>Cool Highlight: Testing sensor board with ZEDF9P using RTK!!! Below shows logged GNSS coordinates without and with RTK</p>
-                <div class="d-flex flex-wrap justify-content-center">
-                  <div class="me-3 mb-3">
-                    <img src="docs/wo_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                  <div class="mb-3">
-                    <img src="docs/w_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-                  </div>
-                </div>
-                <br>
-
-                <p>
-                  Improving the Firmware
+            <br>
+            <p>2024-Present: Flight Controller
+              <ul>
+                <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
+                <li>9  PWM peripherals for control surfaces</li>
+                <li>1 R/C input for ELRS</li>
+                <li>4 analog inputs for current & voltage sensing</li>
+                <li>Suite of sensors for various flight data including…
                   <ul>
-                    <li>Currently moving firmware to the STM32CubeIDE and using the STM32 Hardware Abstraction Layer to write our own sensor drivers</li>
-                    <li>I have written a sensor drivers for the BNO055 IMU and MS4525DO in C using STM32’s HAL</li>
+                    <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
                   </ul>
-                </p>
+                </li>
+                <li>1 CAN Bus interface to an external airspeed sensor</li>
+                <li>Data logging & telemetry</li>
+                <li>Friendly UI such as a USB to serial chip converter</li>
+              </ul>
+            </p>
 
+            <div class="d-flex flex-wrap justify-content-center">
+              <div class="me-3 mb-3">
+                <img src="docs/fc_altium.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
+              <div class="mb-3">
+                <img src="docs/fc_altium2.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
             </div>
+            <div class="d-flex flex-wrap justify-content-center">
+              <div class="me-3 mb-3">
+                <img src="docs/fc_front.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
+              <div class="mb-3">
+                <img src="docs/fc_back.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
+            </div>
+            
+            <br>
 
-          </div>
+        </div>
 
-          <!-- Menu Bar Section -->
-          <div class="col-md-3 menu-bar">
-            <ul class="list-unstyled">
-              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Descript_2>What Is It</a></li>
-              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Hardware>Hardware</a></li>
-              <li class="py-2"><a class="text-decoration-none custom-colour-1" href=#Firmware>Firmware</a></li>
+        <div id="Firmware"  class="section">
+          <h4>Firmware</h4>
+            <p>
+            My codebase which was used during 2024 SAE’s competition was written in C++ in PlatformIO using the Arduino framework.
+            <ul>
+              <li>This choice was made due time constraints and designing/bringing up/validating the PCB in parallel</li>
+              <li>Pros: Pre-existing libraries allow for faster development</li>
+              <li>Cons: Libraries are very abstracted and there is a lot of unnecessary code, makes it difficult to customize firmware</li>
             </ul>
-          </div>
+            There are 3 Tasks:
+            <ol>
+              <li>Collect sensor data and push to a message queue</li>
+              <li>Pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
+              <li>Calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
+            </ol>
+
+            Here is a snippet of the code (main file)!
+            </p>
+
+            <div class="bg-light p-3 rounded border" style="max-height: 400px; max-width: 700px; overflow-y: auto;">
+              <pre><code class="language-c">
+/**
+* @file main.cpp
+* @author Anna
+* @brief This program collects data from a ZEDF9P, BNO-055,and BMP390
+* and outputs a comma separated string of values or byte array.
+* Can also save data to an SD card and upon every reset/power cycle,
+* a new file will be created.
+* @date created 2024
+*
+*/
+
+#include &lt;Arduino.h&gt;
+#include &lt;STM32FreeRTOS.h&gt;
+#include "task.h"
+#include "queue.h"
+#include "sensor_setup.h"
+#include "data_logging.h"
+#include "sensors.h"
+
+static long lastSend = 0;
+void buttonInterrupt();
+volatile bool isCalibrating = false;
+
+QueueHandle_t sensorsQueue;
+
+TaskHandle_t taskReadSensorsHandle = NULL;
+TaskHandle_t taskSendSensorsHandle = NULL;
+TaskHandle_t taskCalibrateHandle = NULL;
+
+void taskReadSensors(void *pvParameters);
+void taskSendSensors(void *pvParameters);
+void taskCalibrate(void *pvParameters);
+
+void setup() {
+Serial.begin(115200);
+while (!Serial) delay(10);
+
+if (!initializeSensors()) {
+  Serial.println("Sensor initialization failed!");
+  while (1);
+}
+
+pinMode(PB8, INPUT);
+attachInterrupt(digitalPinToInterrupt(PB8), buttonInterrupt, RISING);
+
+configureSensors();
+initializeSDCard();
+createNewFile();
+
+sensorsQueue = xQueueCreate(10, sizeof(sensors));
+
+xTaskCreate(taskReadSensors, "taskReadSensors", 256, NULL, 2, &taskReadSensorsHandle);
+xTaskCreate(taskSendSensors, "taskSendSensors", 256, NULL, 1, &taskSendSensorsHandle);
+xTaskCreate(taskCalibrate, "taskCalibrate", 256, NULL, 3, &taskCalibrateHandle);
+
+vTaskStartScheduler();
+}
+
+void loop() {}
+
+void taskReadSensors(void *pvParameters){
+sensors sensorData;
+TickType_t xLastWakeTime = xTaskGetTickCount(); // get current tick count
+
+while(1){
+  if (!isCalibrating) {
+    lastSend = millis();
+    readSensors(lastSend, &sensorData);
+    xQueueSend(sensorsQueue, &sensorData, portMAX_DELAY);
+    vTaskDelayUntil(&xLastWakeTime, (500 / portTICK_RATE_MS)); // absolute time at which the task wishes to unblock
+  }
+}
+}
+
+void taskSendSensors(void *pvParameters){
+sensors sensorData = {0};
+
+while(1) {
+  if (xQueueReceive(sensorsQueue, &sensorData, portMAX_DELAY) == pdPASS) {
+    sendSensors(sensorData);
+  }
+}
+}
+
+void taskCalibrate(void *pvParameters) {
+sensorsCalibration calibrationData;
+
+  while (1) {
+      ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //waiting for ISR notification
+      isCalibrating = true;
+
+      calibrateSensors(&calibrationData);
+
+      xQueueReset(sensorsQueue); //clear queue, tryna prevent backlog of old sensor data
+      isCalibrating = false;
+  }
+}
+
+void buttonInterrupt() {
+BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+xTaskNotifyFromISR(taskCalibrateHandle, 0, eNoAction, &xHigherPriorityTaskWoken); // Notify the calibration task directly (using this as a light weight binary semaphore)
+portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will still see that the priority 3 task is ready
+}
+              </code></pre>
+            </div>
+            <br><br>
+
+            <p>Cool Highlight: Testing sensor board with ZEDF9P using RTK!!! Below shows logged GNSS coordinates without and with RTK</p>
+            <div class="d-flex flex-wrap justify-content-center">
+              <div class="me-3 mb-3">
+                <img src="docs/wo_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
+              <div class="mb-3">
+                <img src="docs/w_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              </div>
+            </div>
+            <br>
+
+            <p>
+              Improving the Firmware
+              <ul>
+                <li>Currently moving firmware to the STM32CubeIDE and using the STM32 Hardware Abstraction Layer to write our own sensor drivers</li>
+                <li>I have written a sensor drivers for the BNO055 IMU and MS4525DO in C using STM32’s HAL</li>
+              </ul>
+            </p>
+
+        </div>
+
+      </div>
+
+      <!-- Menu Bar Section -->
+      <div class="col-md-3 menu-container">
+        <div class="menu-bar sticky-menu p-3">
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Descript_2>What Is It</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware>Hardware</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware>Firmware</a>
         </div>
       </div>
+
       <!-- End of a Project Card -->
     </div>
   </div>
   <button id="scrollToTop" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" onclick="scrollToTop()">
-    <i class="bi bi-arrow-up"></i>
+    <i class="fa-solid fa-arrow-up"></i>
   </button>
 
 
@@ -330,12 +325,9 @@
     <p>Anna Cao</p>
   </footer>
 
-  <!-- Scripts -->
-  </script>
-  <script src="js/scrollup.js"></script>
-  <script src="js/mobile.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
+    <!-- Wait for page to fully load and then add scripts-->
+    <script src="js/scrollup.js"></script>
+    <script src="js/mobile.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </html>

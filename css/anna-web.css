@@ -297,6 +297,10 @@ footer {
   display: none; /*initially dont display*/
 }
 
+.sticky-menu {
+  top: 50px; /* Creating more space from the top during sticky (when scrolling)*/
+}
+
 /* MEDIA QUERRIES */
 
 @media (max-width: 1050px) {
