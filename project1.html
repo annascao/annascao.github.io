@@ -83,30 +83,9 @@
             </div>
         </div>
 
-        <div id="Hardware"  class="section">
-          <h4>Hardware</h4>
-            <p>2023/2024: Sensor Board
-              <ul>
-                <li>Processor</li>
-                  <ul>
-                    <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
-                    <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
-                  </ul>
-                <li>Suite of sensors for various flight data including…
-                  <ul>
-                    <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
-                  </ul>
-                </li>
-                <li>Data logging & telemetry</li>
-              </ul>
-            </p>
-            <div class="text-center">
-              <div class="col-6 d-inline-block">
-                <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
-              </div>
-            </div>
-            <br>
-            <p>2024-Present: Flight Controller
+        <div id="Hardware_2"  class="section">
+          <h4>Hardware 2024-Present</h4>
+            <p>Flight Controller
               <ul>
                 <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
                 <li>9  PWM peripherals for control surfaces</li>
@@ -144,8 +123,39 @@
 
         </div>
 
-        <div id="Firmware"  class="section">
-          <h4>Firmware</h4>
+        <div id="Firmware_2"  class="section">
+          <h4>Firmware 2024-Present</h4>
+            <p>
+              Currently moving firmware to develop in STM32CubeIDE. The firmware runs in a freeRTOS environment, and we use the STM32 Hardware Abstraction Layer to write our own sensor drivers, support manual flight control with RC transmitter, and many other functionalities of the flight controller.
+            </p>
+        </div>
+
+        <div id="Hardware_1"  class="section">
+          <h4>Hardware 2023-2024</h4>
+            <p>Sensor Board
+              <ul>
+                <li>Processor</li>
+                  <ul>
+                    <li>The initial design used the STM32F103C8T6 Arm Cortex-M3</li>
+                    <li>After realizing the limited amount of flash memory, we chose a new processor, the STM32F103CBT6 with 128kB flash</li>
+                  </ul>
+                <li>Suite of sensors for various flight data including…
+                  <ul>
+                    <li>IMU, Barometer, GNSS Module (RTK capable), Airspeed Sensor</li>
+                  </ul>
+                </li>
+                <li>Data logging & telemetry</li>
+              </ul>
+            </p>
+            <div class="text-center">
+              <div class="col-6 d-inline-block">
+                <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
+              </div>
+            </div>
+        </div>
+
+        <div id="Firmware_1"  class="section">
+          <h4>Firmware 2023-2024</h4>
             <p>
             My codebase which was used during 2024 SAE’s competition was written in C++ in PlatformIO using the Arduino framework.
             <ul>
@@ -283,14 +293,6 @@ portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will s
             </div>
             <br>
 
-            <p>
-              Improving the Firmware
-              <ul>
-                <li>Currently moving firmware to the STM32CubeIDE and using the STM32 Hardware Abstraction Layer to write our own sensor drivers</li>
-                <li>I have written a sensor drivers for the BNO055 IMU and MS4525DO in C using STM32’s HAL</li>
-              </ul>
-            </p>
-
         </div>
 
       </div>
@@ -299,8 +301,10 @@ portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will s
       <div class="col-md-3 menu-container">
         <div class="menu-bar sticky-menu p-3">
           <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Descript_2>What Is It</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware>Hardware</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware>Firmware</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware_2>Hardware 2024-Present</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware_2>Firmware 2024-Present</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware_1>Hardware 2023-2024</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware_1>Firmware 2023-2024</a>
         </div>
       </div>
 
