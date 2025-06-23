@@ -75,69 +75,101 @@
 
             As a lead on the Avionics team, I focus on designing and developing the flight controller for the plane, including sensing and data acquisition systems, hardware design, firmware implementation, and integration with the entire aircraft.
             </p>
-
-            <div class="text-center">
-              <div class="col-6 d-inline-block">
-                <img src="docs/advanced_plane.jpg" alt="Coolest Plane Ever" class="img-fluid me-3 mb-3">
+            <div class="row justify-content-center text-center">
+              <div class="col-md-6 mb-3">
+                <img src="docs/advanced_plane.jpg" alt="Coolest Plane Ever" class="img-fluid">
               </div>
-            </div>
-            <div class="text-center">
-              <div class="col-6 d-inline-block">
-                <img src="docs/adv2025.png" alt="Coolest Plane Ever" class="img-fluid me-3 mb-3">
-              </div>
-            </div>
-        </div>
-
-        <div id="Hardware_2"  class="section">
-          <h4>Hardware 2024-Present</h4>
-            <p>Flight Controller
-              <ul>
-                <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
-                <li>9  PWM peripherals for control surfaces</li>
-                <li>1 R/C input for ELRS</li>
-                <li>4 analog inputs for current & voltage sensing</li>
-                <li>Suite of sensors for various flight data including…
-                  <ul>
-                    <li>IMU, Barometer, GNSS Module(RTK capable) & Camera</li>
-                  </ul>
-                </li>
-                <li>1 CAN Bus interface to an external airspeed sensor</li>
-                <li>Data logging & telemetry</li>
-                <li>Friendly UI such as a USB to serial chip converter</li>
-              </ul>
-            </p>
-
-            <div class="d-flex flex-wrap justify-content-center">
-              <div class="me-3 mb-3">
-                <img src="docs/fc_altium.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-              </div>
-              <div class="mb-3">
-                <img src="docs/fc_altium2.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-              </div>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center">
-              <div class="me-3 mb-3">
-                <img src="docs/fc_front.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
-              </div>
-              <div class="mb-3">
-                <img src="docs/fc_back.jpg" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              <div class="col-md-6 mb-3">
+                <img src="docs/adv2025.png" alt="Coolest Plane Ever" class="img-fluid">
               </div>
             </div>
             
-            <br>
-
         </div>
 
-        <div id="Firmware_2"  class="section">
-          <h4>Firmware 2024-Present</h4>
+        <div id="Year_3"  class="section">
+          <h4>2024-Present</h4>
+          
+          <div class="row align-items-center mb-5">
+            <div class="col-md-6 text-center d-flex flex-column gap-3">
+              <img src="docs/fc.png" alt="Image 1">
+              <img src="docs/avionics_in_plane.jpg" alt="Image 3" class="img-fluid rounded shadow">
+              <!-- Add more images here as needed -->
+            </div>
+            <div class="col-md-6">
+              <h5>Flight Controller Hardware</h5>
+              <p>
+                <ul>
+                  <li>Processor: STM32H7Z23 Arm Cortex-M7</li>
+                  <li>4 UART interfaces
+                    <ul>
+                      <li>ELRS receiver </li>
+                      <li>ZEDF9P GPS module</li>
+                      <li>RFD900 telemetry radio</li>
+                      <li>Serial debug</li>
+                    </ul>
+                  </li>
+                  <li>3 I2C interfaces
+                    <ul>
+                      <li>BMP390 altitude sensor</li>
+                      <li>BNO055 imu module </li>
+                      <li>EEPROM memory</li>
+                    </ul>
+                  </li>
+                  <li>1 CAN interface
+                    <ul>
+                      <li>MS4525 external air speed sensor board</li>
+                    </ul>
+                  </li>
+                  <li>8 PWM timer channels
+                    <ul>
+                      <li>7 servos (2 aileron, 2 elevator, 1 rudder/LDG, 2 payload)</li>
+                      <li>1 ESC (prop motor)</li>
+                    </ul>
+                  </li>
+                  <li>1 SDMMC interface
+                    <ul>
+                      <li>MicroSD card</li>
+                    </ul>
+                  </li>
+                  <li>4 ADC pins
+                    <ul>
+                      <li>Power sensing</li>
+                    </ul>
+                  </li>
+                  <li>1 SPI interface
+                    <ul>
+                      <li>Mega 5MP camera</li>
+                    </ul>
+                  </li>
+                </ul>
+              </p>
+            </div>
+          </div>
+          <div class="text-center my-3">
+            <figure>
+              <img src="docs/avionics_stack.png" alt="Avionics Stack Diagram" class="img-fluid rounded shadow" style="max-width: 500px;">
+              <figcaption class="mt-2 text-muted">Avionics PCBA, including the ZED-F9P GNSS board (top, red), flight controller (middle), and power distribution board (bottom). The total stack is 11 x 6 x 6 cm and weighs less than 200 grams. </figcaption>
+            </figure>
+          </div>
+
+          <h5>Flight Controller Firmware</h5>
+          <p>
+            The flight control firmware is structured around an event-driven, multi-threaded architecture using the FreeRTOS real-time operating system. I focused on the sensors and data acquisition task, one of three main FreeRTOS tasks in the flight controller. For each sensor, we developed modular, maintainable, and easy-to-use drivers in C using the STM32 HAL. Below is a diagram of the sensor task and how these drivers were used to collect and process data for use by other tasks.
+          </p>
+          <div class="text-center my-3">
+            <img src="docs/sensors_task.png" alt="Sensor Task Diagram" style="max-width: 600px;">
+          </div>
+          <p>
+            <a href="https://drive.google.com/file/d/1Xm6hkKVy9Q1noGaoRq-NTiBs1e4_nnBj/view" target="_blank" rel="noopener noreferrer">
+              🎥 Watch the plane fly!
+            </a>
+          </p>
+        </div>
+
+        <div id="Year_2"  class="section">
+          <h4>2023-2024</h4>
+          <h5>Sensor Board</h5>
             <p>
-              Currently moving firmware to develop in STM32CubeIDE. The firmware runs in a freeRTOS environment, and we use the STM32 Hardware Abstraction Layer to write our own sensor drivers, support manual flight control with RC transmitter, and many other functionalities of the flight controller.
-            </p>
-        </div>
-
-        <div id="Hardware_1"  class="section">
-          <h4>Hardware 2023-2024</h4>
-            <p>Sensor Board
               <ul>
                 <li>Processor</li>
                   <ul>
@@ -157,10 +189,7 @@
                 <img src="docs/sensor_board.jpg" alt="Project Image" class="img-fluid me-3 mb-3">
               </div>
             </div>
-        </div>
 
-        <div id="Firmware_1"  class="section">
-          <h4>Firmware 2023-2024</h4>
             <p>
             My codebase which was used during 2024 SAE’s competition was written in C++ in PlatformIO using the Arduino framework.
             <ul>
@@ -172,128 +201,18 @@
             <ol>
               <li>Collect sensor data and push to a message queue</li>
               <li>Pop the sensor data struct off the message queue and send it via UART as well as save to SD card</li>
-              <li>Calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight. This would also get rid of a lot of the overhead in incorporating an interrupt into the RTOS as seen in the code below.</li>
+              <li>Calibrate sensors - I have now learned and believe that this should not be a task. It would make more sense to have calibration separate from the data acquisition firmware and be performed prior to flight. I initially wanted to be able to calibrate upon a button press at any given time, but we only ever calibrate before flight.</li>
             </ol>
-
-            Here is a snippet of the code (main file)!
             </p>
-
-            <div class="bg-light p-3 rounded border" style="max-height: 400px; max-width: 700px; overflow-y: auto;">
-              <pre><code class="language-c">
-/**
-* @file main.cpp
-* @author Anna
-* @brief This program collects data from a ZEDF9P, BNO-055,and BMP390
-* and outputs a comma separated string of values or byte array.
-* Can also save data to an SD card and upon every reset/power cycle,
-* a new file will be created.
-* @date created 2024
-*
-*/
-
-#include &lt;Arduino.h&gt;
-#include &lt;STM32FreeRTOS.h&gt;
-#include "task.h"
-#include "queue.h"
-#include "sensor_setup.h"
-#include "data_logging.h"
-#include "sensors.h"
-
-static long lastSend = 0;
-void buttonInterrupt();
-volatile bool isCalibrating = false;
-
-QueueHandle_t sensorsQueue;
-
-TaskHandle_t taskReadSensorsHandle = NULL;
-TaskHandle_t taskSendSensorsHandle = NULL;
-TaskHandle_t taskCalibrateHandle = NULL;
-
-void taskReadSensors(void *pvParameters);
-void taskSendSensors(void *pvParameters);
-void taskCalibrate(void *pvParameters);
-
-void setup() {
-Serial.begin(115200);
-while (!Serial) delay(10);
-
-if (!initializeSensors()) {
-  Serial.println("Sensor initialization failed!");
-  while (1);
-}
-
-pinMode(PB8, INPUT);
-attachInterrupt(digitalPinToInterrupt(PB8), buttonInterrupt, RISING);
-
-configureSensors();
-initializeSDCard();
-createNewFile();
-
-sensorsQueue = xQueueCreate(10, sizeof(sensors));
-
-xTaskCreate(taskReadSensors, "taskReadSensors", 256, NULL, 2, &taskReadSensorsHandle);
-xTaskCreate(taskSendSensors, "taskSendSensors", 256, NULL, 1, &taskSendSensorsHandle);
-xTaskCreate(taskCalibrate, "taskCalibrate", 256, NULL, 3, &taskCalibrateHandle);
-
-vTaskStartScheduler();
-}
-
-void loop() {}
-
-void taskReadSensors(void *pvParameters){
-sensors sensorData;
-TickType_t xLastWakeTime = xTaskGetTickCount(); // get current tick count
-
-while(1){
-  if (!isCalibrating) {
-    lastSend = millis();
-    readSensors(lastSend, &sensorData);
-    xQueueSend(sensorsQueue, &sensorData, portMAX_DELAY);
-    vTaskDelayUntil(&xLastWakeTime, (500 / portTICK_RATE_MS)); // absolute time at which the task wishes to unblock
-  }
-}
-}
-
-void taskSendSensors(void *pvParameters){
-sensors sensorData = {0};
-
-while(1) {
-  if (xQueueReceive(sensorsQueue, &sensorData, portMAX_DELAY) == pdPASS) {
-    sendSensors(sensorData);
-  }
-}
-}
-
-void taskCalibrate(void *pvParameters) {
-sensorsCalibration calibrationData;
-
-  while (1) {
-      ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //waiting for ISR notification
-      isCalibrating = true;
-
-      calibrateSensors(&calibrationData);
-
-      xQueueReset(sensorsQueue); //clear queue, tryna prevent backlog of old sensor data
-      isCalibrating = false;
-  }
-}
-
-void buttonInterrupt() {
-BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-xTaskNotifyFromISR(taskCalibrateHandle, 0, eNoAction, &xHigherPriorityTaskWoken); // Notify the calibration task directly (using this as a light weight binary semaphore)
-portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will still see that the priority 3 task is ready
-}
-              </code></pre>
-            </div>
-            <br><br>
+            <br>
 
             <p>Cool Highlight: Testing sensor board with ZEDF9P using RTK!!! Below shows logged GNSS coordinates without and with RTK</p>
-            <div class="d-flex flex-wrap justify-content-center">
-              <div class="me-3 mb-3">
-                <img src="docs/wo_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+            <div class="row justify-content-center text-center">
+              <div class="col-md-6 mb-3">
+                <img src="docs/wo_rtk.png" alt="Coolest Plane Ever" class="img-fluid">
               </div>
-              <div class="mb-3">
-                <img src="docs/w_rtk.png" alt="Project Image" class="img-fluid" style="max-width: 250px; height: auto;">
+              <div class="col-md-6 mb-3">
+                <img src="docs/w_rtk.png" alt="Coolest Plane Ever" class="img-fluid">
               </div>
             </div>
             <br>
@@ -306,10 +225,8 @@ portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // runs the scheduler so it will s
       <div class="col-md-3 menu-container">
         <div class="menu-bar sticky-menu p-3">
           <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Descript_2>What Is It</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware_2>Hardware 2024-Present</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware_2>Firmware 2024-Present</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Hardware_1>Hardware 2023-2024</a>
-          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Firmware_1>Firmware 2023-2024</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Year_3>2024-Present</a>
+          <a class="text-decoration-none custom-colour-1 d-block mb-2" href=#Year_2>2023-2024</a>
         </div>
       </div>
 
